@@ -169,3 +169,9 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+/.idea/inspectionProfiles/profiles_settings.xml
+/.idea/.gitignore
+/.idea/Junior_cup.iml
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml

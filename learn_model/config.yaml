@@ -1,0 +1,7 @@
+path: C:\Users\slync\PycharmProjects\Junior_cup\learn_model\yolo_dataset  # путь к папке с датасетом
+train: images/train  # путь к папке с обучающими изображениями
+val: images/val  # путь к папке с валидацией
+test: images/test  # путь к тестовым изображениям
+
+nc: 1  # количество классов
+names: ["signboard"]  # название класса
