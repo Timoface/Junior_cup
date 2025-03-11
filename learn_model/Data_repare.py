@@ -2,13 +2,11 @@ import os
 import pandas as pd
 import shutil
 
-# Пути к данным
-DATASET_PATH = "data"  # Здесь лежат train, val, test
-OUTPUT_PATH = "yolo_dataset"  # Новая структура для YOLO
-LABELS = {"signboard": 0}  # Классы
+DATASET_PATH = "data"
+OUTPUT_PATH = "yolo_dataset"
+LABELS = {"signboard": 0}
 
 def convert_annotations(csv_path, out_labels_folder):
-    """Конвертирует аннотации из CSV в формат YOLO."""
     df = pd.read_csv(csv_path)
     os.makedirs(out_labels_folder, exist_ok=True)
 
@@ -28,7 +26,6 @@ def convert_annotations(csv_path, out_labels_folder):
                 height = (ymax - ymin) / img_h
                 f.write(f"{LABELS[cls]} {x_center} {y_center} {width} {height}\n")
 
-# Создание структуры папок
 for split in ["train", "val", "test"]:
     csv_file = os.path.join(DATASET_PATH, split, f"{split}.csv")
     img_dir = os.path.join(DATASET_PATH, split)
@@ -38,10 +35,8 @@ for split in ["train", "val", "test"]:
     os.makedirs(images_dir, exist_ok=True)
     os.makedirs(labels_dir, exist_ok=True)
 
-    # Конвертация аннотаций
     convert_annotations(csv_file, labels_dir)
 
-    # Копирование изображений
     for img_file in os.listdir(img_dir):
         if img_file.endswith((".jpg", ".png")):
             shutil.copy(os.path.join(img_dir, img_file), os.path.join(images_dir, img_file))
